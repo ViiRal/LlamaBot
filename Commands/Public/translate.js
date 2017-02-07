@@ -19,6 +19,6 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 		});
 	} else {
 		winston.warn(`Invalid parameters '${suffix}' provided for ${commandData.name} command`, {svrid: msg.guild.id, chid: msg.channel.id, usrid: msg.author.id});
-		msg.channel.createMessage(`${msg.author.mention} Um i'm v confused. pls use \`${bot.getCommandPrefix(msg.guild, serverDocument)}${commandData.name} ${commandData.usage}\``);
+		msg.channel.createMessage(`${msg.author.mention} Um i'm confused. pls use \`${bot.getCommandPrefix(msg.guild, serverDocument)}${commandData.name} ${commandData.usage}\``);
 	}
 };

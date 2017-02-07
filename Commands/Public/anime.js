@@ -15,7 +15,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 			num = parseInt(num);
 		}
 
-		const api_url = `http://hummingbird.me/api/v1/search/anime?query=${encodeURIComponent(query)}`;
+		const api_url = `https://kitsu.io/api/17/search/anime?query=${encodeURIComponent(query)}`;
 		unirest.get(api_url).header("Accept", "application/json").end(res => {
 			if(res.status==200 && res.body.length) {
 				const results = [];

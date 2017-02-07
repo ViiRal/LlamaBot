@@ -3,7 +3,7 @@ const moment = require("moment");
 
 module.exports = (bot, db, config, winston, userDocument, serverDocument, channelDocument, memberDocument, msg, suffix, commandData) => {
 	const showNotStarted = () => {
-		msg.channel.createMessage(`There isn't a points lottery going on rn. Use \`${bot.getCommandPrefix(msg.guild, serverDocument)}${commandData.name} start\` to start one.`);
+		msg.channel.createMessage(`There isn't an Gems lottery going on rn. Use \`${bot.getCommandPrefix(msg.guild, serverDocument)}${commandData.name} start\` to start one.`);
 	};
 
 	if(suffix) {
@@ -16,7 +16,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 					msg.channel.createMessage(`There's already a lottery going on in this channel, with ${participantCount} ${participantCount==1 ? "person" : "people"} currently enrolled. 👍 Wait for it to end before starting a new one.`);
 				} else {
 					Lotteries.start(db, msg.guild, serverDocument, msg.author, msg.channel, channelDocument);
-					msg.channel.createMessage(`Points lottery started! 🌟 Anyone can use \`${bot.getCommandPrefix(msg.guild, serverDocument)}${commandData.name} enroll\` for a chance to win! 🤑 The winner will be announced ${moment(channelDocument.lottery.expiry_timestamp).fromNow()}`);
+					msg.channel.createMessage(`Gems lottery started! 🌟 Anyone can use \`${bot.getCommandPrefix(msg.guild, serverDocument)}${commandData.name} enroll\` for a chance to win! 🤑 The winner will be announced ${moment(channelDocument.lottery.expiry_timestamp).fromNow()}`);
 				}
 				break;
 			case "enroll":
@@ -39,7 +39,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 									if(err) {
 										winston.error("Failed to save server data for points lottery", {svrid: msg.guild.id}, err);
 									}
-									msg.channel.createMessage(`Thank you for purchasing an points™ lottery ticket ${msg.author.mention}! 🎟 That cost you ${ticketPrice} point${ticketPrice==1 ? "" : "s"} - no refunds. The winner will be announced ${moment(channelDocument.lottery.expiry_timestamp).fromNow()}.`);
+									msg.channel.createMessage(`Thank you for purchasing an Gems™ lottery ticket ${msg.author.mention}! 🎟 That cost you ${ticketPrice} point${ticketPrice==1 ? "" : "s"} - no refunds. The winner will be announced ${moment(channelDocument.lottery.expiry_timestamp).fromNow()}.`);
 								});
 							});
 						}
@@ -74,7 +74,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 			const participantCount = channelDocument.lottery.participant_ids.filter((elem, i, self) => {
 				return i==self.indexOf(elem);
 			}).length;
-			msg.channel.createMessage(`Points lottery started by @${creator ? bot.getName(msg.guild, serverDocument, creator) : "invalid-user"}. 💸 ${participantCount} ${participantCount==1 ? "person" : "people"} currently enrolled. The winner will be announced ${moment(channelDocument.lottery.expiry_timestamp).fromNow()}.`);
+			msg.channel.createMessage(`Gems lottery started by @${creator ? bot.getName(msg.guild, serverDocument, creator) : "invalid-user"}. 💸 ${participantCount} ${participantCount==1 ? "person" : "people"} currently enrolled. The winner will be announced ${moment(channelDocument.lottery.expiry_timestamp).fromNow()}.`);
 		} else {
 			showNotStarted();
 		}

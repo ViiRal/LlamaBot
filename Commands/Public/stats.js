@@ -48,7 +48,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 			points: -1
 		}).limit(5).exec((err, userDocuments) => {
 			const richestMembers = userDocuments ? userDocuments.map(a => {
-				return `@${bot.getName(msg.guild, serverDocument, msg.guild.members.get(a._id))}: ${a.points} Point${a.points==1 ? "" : "s"}`;
+				return `@${bot.getName(msg.guild, serverDocument, msg.guild.members.get(a._id))}: ${a.points} Gem${a.points==1 ? "" : "s"}`;
 			}) : [];
 
 			const info = [

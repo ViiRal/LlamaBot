@@ -1,6 +1,6 @@
 module.exports = (bot, db, config, winston, userDocument, serverDocument, channelDocument, memberDocument, msg, suffix, commandData) => {
 	if(suffix=="me") {
-		msg.channel.createMessage(`⭐️ You have **${userDocument.points}** Point${userDocument.points==1 ? "" : "s"}`);
+		msg.channel.createMessage(`⭐️ You have **${userDocument.points}** Gem${userDocument.points==1 ? "" : "s"}`);
 	} else if(suffix) {
 		const member = bot.memberSearch(suffix, msg.guild);
 		if(member) {
@@ -12,7 +12,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 					if(!err && targetUserDocument) {
 						points = targetUserDocument.points;
 					}
-					msg.channel.createMessage(`⭐️ **@${bot.getName(msg.guild, serverDocument, member)}** has ${points} Point${points==1 ? "" : "s"}`);
+					msg.channel.createMessage(`⭐️ **@${bot.getName(msg.guild, serverDocument, member)}** has ${points} Gem${points==1 ? "" : "s"}`);
 				});
 			}
 		} else {
@@ -31,7 +31,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 			points: -1
 		}).limit(10).exec((err, userDocuments) => {
 			msg.channel.createMessage(userDocuments ? userDocuments.map(a => {
-				return `**@${bot.getName(msg.guild, serverDocument, msg.guild.members.get(a._id))}:** ${a.points} Point${a.points==1 ? "" : "s"}`;
+				return `**@${bot.getName(msg.guild, serverDocument, msg.guild.members.get(a._id))}:** ${a.points} Gem${a.points==1 ? "" : "s"}`;
 			}).join("\n") : "No one on this server has any points! Use `@user +1` to give upvote someone. 🌟");
 		});
 	}

@@ -1,7 +1,7 @@
 module.exports = (bot, db, config, winston, userDocument, serverDocument, channelDocument, memberDocument, msg, suffix) => {
 	if(suffix) {
 		const getCommandHelp = (name, type, usage, description) => {
-			return `__Help for ${type} command **${name}**__\n${description ? (`Description: ${description}\n`) : ""}${usage ? (`Usage: \`${usage}\`\n`) : ""}<https://llamabot.us:8080/#${name}>`;
+			return `__Help for ${type} command **${name}**__\n${description ? (`Description: ${description}\n`) : ""}${usage ? (`Usage: \`${usage}\`\n`) : ""}<${config.hosting_url}wiki/Commands#${name}>`;
 		};
 
 		const info = [];
@@ -35,7 +35,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 		Object.keys(commands).sort().forEach(category => {
 			info.push(`**${category}**\`\`\`${commands[category].sort().join("\n")}\`\`\``);
 		});
-		info.push(`For detailed information about each command and all of LlamaBot's other features, head over to our wiki: <http://llamabot.us:8080/wiki/Commands>. If you need support using LlamaBot, please join our Discord server: ${config.discord_link}. Have fun! 🙂🐬`);
+		info.push(`For detailed information about each command and all of LlamaBot's other features, head over to our wiki: <${config.hosting_url}wiki/Commands>. If you need support using LlamaBot, please join our Discord server: <${config.discord_link}>. Have fun! 🙂🐬\n Want to help with the development of LlamaBot? Check out: https://github.com/ViiRal/LlamaBot`);
 
 		msg.author.getDMChannel().then(ch => {
 			bot.sendArray(ch, info);

@@ -57,7 +57,7 @@ module.exports = (bot, db, config, winston, userDocument, serverDocument, channe
 			}
 		});
 
-		msg.guild.createChannel(`llamabot-room-${Date.now()}`, type).then(ch => {
+		msg.guild.createChannel(`awesomebot-room-${Date.now()}`, type).then(ch => {
 			msg.channel.createMessage(`The ${suffix.split(" ")[0].toLowerCase()} room ${ch.mention} is now available! 😎`);
 
 			let permissionConstant = 3145728;
